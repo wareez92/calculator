@@ -12,7 +12,7 @@ function App() {
               {/* ---Output--- */}
 
               <div className='output'>
-                  <div className='previous-operand'></div>
+                  <div className='previous-operand'>123,456</div>
                   <div className='current-opperand'></div>
               </div>
 

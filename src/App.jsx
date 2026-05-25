@@ -1,19 +1,23 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
-function App() {
+function reducer(state, action) {
 
+}
+
+function App() {
+      const [{ currentOperand, previousOperand, Operation}, dispatch] = useReducer(reducer,{})
   return (
         <div className="calculator-grid">
 
               {/* ---Output--- */}
 
               <div className='output'>
-                  <div className='previous-operand'>123,456vvvvvvv</div>
-                  <div className='current-operand'>65,000</div>
+                  <div className='previous-operand'></div>
+                  <div className='current-operand'></div>
               </div>
 
               {/* ---Buttons--- */}

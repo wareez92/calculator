@@ -9,7 +9,11 @@ function reducer(state, action) {
 }
 
 function App() {
+
       const [{ currentOperand, previousOperand, Operation}, dispatch] = useReducer(reducer,{})
+
+// Calculator Interface
+
   return (
         <div className="calculator-grid">
 

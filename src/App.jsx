@@ -3,8 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import DigitButton from './DigitButton'
 
-const ACTIONS = {
+export const ACTIONS = {
       ADD_DIGIT: 'add-digit',
       CHOOSE_OPERATION: 'choose-operation',
       CLEAR: 'clear',
@@ -17,7 +18,7 @@ function reducer(state, { type, payload }) {
             case ACTIONS.ADD_DIGIT:
                   return {
                         ...state,
-                        currentOperand: '${currentOperand || ""}${payload.digit}'
+                        currentOperand: `${state.currentOperand || ""}${payload.digit}`,
                   }
       }
 }
@@ -26,7 +27,7 @@ function App() {
 
       const [{ currentOperand, previousOperand, Operation }, dispatch] = useReducer(reducer, {})
 
-      dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } })
+
 
       // ---Calculator Interface--- //
 
@@ -36,15 +37,15 @@ function App() {
                   {/* ---Output--- */}
 
                   <div className='output'>
-                        <div className='previous-operand'></div>
-                        <div className='current-operand'></div>
+                        <div className='previous-operand'>{previousOperand} {Operation}</div>
+                        <div className='current-operand'>{currentOperand}</div>
                   </div>
 
                   {/* ---Buttons--- */}
 
                   <button className='span-two'>AC</button>
                   <button>DEL</button>
-                  <button>÷</button>
+                  <DigitButton digit="÷" dispatch={dispatch} />
                   <button>1</button>
                   <button>2</button>
                   <button>3</button>

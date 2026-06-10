@@ -27,14 +27,27 @@ function reducer(state, { type, payload }) {
                         ...state,
                         currentOperand: `${state.currentOperand || ""}${payload.digit}`,
                   }
-            case ACTIONS.CLEAR: 
+            case ACTIONS.CHOOSE_OPERATION:
+                  if (state.currentOperand == null && state.previousOperand == null) {
+                        return state
+                  }
+                  if (state.previousOperand == null) {
+                        return {
+                              ...state,
+                              operation: payload.operation,
+                              previousOperand: state.currentOperand,
+                              currentOperand: null,
+                        }
+
+                  }
+            case ACTIONS.CLEAR:
                   return {}
       }
 }
 
 function App() {
 
-      const [{ currentOperand, previousOperand, Operation }, dispatch] = useReducer(reducer, {})
+      const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(reducer, {})
 
 
 
@@ -46,7 +59,7 @@ function App() {
                   {/* ---Output--- */}
 
                   <div className='output'>
-                        <div className='previous-operand'>{previousOperand} {Operation}</div>
+                        <div className='previous-operand'>{previousOperand} {operation}</div>
                         <div className='current-operand'>{currentOperand}</div>
                   </div>
 
